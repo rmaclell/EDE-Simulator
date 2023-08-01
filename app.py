@@ -12,7 +12,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/collect/<severity>/<num_attributes>")
+@app.route("/customers/<severity>/<num_attributes>")
 def collect_data(severity, num_attributes):
     """API endpoint that returns data depending on the exposure severity requested.
     :param severity: defines the severity of EDE, either none, low, mod or high.
@@ -32,3 +32,4 @@ def collect_data(severity, num_attributes):
             return status.HTTP_400_BAD_REQUEST
     else:
         return status.HTTP_400_BAD_REQUEST
+
