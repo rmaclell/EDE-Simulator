@@ -13,11 +13,6 @@ low_sev_data = "/segments/low/"
 mod_sev_data = "/segments/mod/"
 high_sev_data = "/segments/mod"
 
-
-# Establish a connection to the local SQLite database.
-# connection = sqlite3.connect('data/ede_eval_data')
-# cur = connection.cursor()
-
 @app.route("/")
 def home():
     """Returns the HTML template for the homepage. Accepts GET requests only.
@@ -45,7 +40,6 @@ def customer_data(severity, num_attributes):
                 response_data = {}
                 for request_uri in request_chain:
                     response = requests.get(request_uri)
-=
                 print(response_data)
             elif severity == "mod":
                 return status.HTTP_200_OK

@@ -14,6 +14,7 @@ def generate_request_chain(severity, attributes):
     # Instantiate the maximum attributes and the request chain array.
     max_attributes = 7
     request_chain = []
+    base_string = base_url + segments_uri + "/" + severity + "/?"
 
     while max_attributes > 0:
         # Check the maximum attributes left is not one to prevent a value error in the random range function.
@@ -22,13 +23,13 @@ def generate_request_chain(severity, attributes):
             req_attributes = random.sample(attributes, no_req_attributes)
             new_request = base_url + segments_uri + "/" + severity + "/?"
             for attr_string in req_attributes:
-                new_request = new_request + "attr=" + attr_string + "&"
+                new_request = base_string + "attr=" + attr_string + "&"
                 attributes.remove(attr_string)
             new_request = new_request.rstrip(new_request[-1])
             max_attributes = max_attributes - no_req_attributes
             request_chain.append(new_request)
         else:
-            new_request = base_url + segments_uri + "/" + severity + "/?attr=" + attributes[0]
+            new_request = base_string + "attr=" + attributes[0]
             request_chain.append(new_request)
             break
     return request_chain
@@ -46,8 +47,6 @@ def build_query_string(attribute_list, severity_lvl):
     if len(attribute_list) > 1:
         for attr_string in attribute_list:
             column_string = column_string + "," + attr_string
-    return "SELECT " + column_string + " FROM " + table_string + " WHERE ROWID IN (SELECT ROWID from " + table_string + " ORDER BY random() LIMIT 1)"
-
-
-test_str = ["test1", "test2", "test2", "test3", "test4", "test5", "test6"]
-print(build_query_string(test_str, "low"))
+    return ("SELECT " + column_string + " FROM " + table_string +
+            " WHERE ROWID IN (SELECT ROWID from " + table_string +
+            " ORDER BY random() LIMIT 1)")
