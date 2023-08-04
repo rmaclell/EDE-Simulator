@@ -59,7 +59,6 @@ a {
     padding: 0.7rem;
     text-align: center;
     cursor: pointer;
-    width: 100%;
     display: block;
     font-family: 'Courier New', monospace;
     font-size: 1em;
@@ -69,6 +68,7 @@ a {
 
 .button{
     transition-duration: 0.4s;
+    background-color: #c9c6c6;
 }
 
 /* individual button style */

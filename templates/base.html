@@ -18,29 +18,20 @@
         <h2>Severity</h2>
         <p>Selecting a severity level will generate request for a random number of attributes at the severity level.</p>
         <div class="button-group">
-
-            <button id="button-low" class="button">
-                <a href="http://127.0.0.1:5000/customers/low/{{ range(1,6) | random }}">Low</a>
-            </button>
-            <button id="button-mod" class="button">
-                <a href="http://127.0.0.1:5000/customers/mod/{{ range(1,6) | random }}">Moderate</a>
-            </button>
-            <button id="button-high" class="button">
-                <a href="http://127.0.0.1:5000/customers/high/{{ range(1,6) | random }}">High</a>
-            </button>
-            <button id="button-none" class="button">
-                <a href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">None</a>
-            </button>
+            <a id="button-low" class="button" href="http://127.0.0.1:5000/customers/low/{{ range(1,6) | random }}">Low</a>
+            <a id="button-mod" class="button" href="http://127.0.0.1:5000/customers/mod/{{ range(1,6) | random }}">Moderate</a>
+            <a id="button-high" class="button" href="http://127.0.0.1:5000/customers/high/{{ range(1,6) | random }}">High</a>
+            <a id="button-none" class="button" href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">None</a>
         </div>
         <h2>Exposure Level</h2>
         <p>Selecting an exposure level will generate a request with the specified number of attributes at a random severity level.</p>
         <div class="button-group">
-            <button id="button-one" class="button">1</button>
-            <button id="button-two" class="button">2</button>
-            <button id="button-three" class="button">3</button>
-            <button id="button-four" class="button">4</button>
-            <button id="button-five" class="button">5</button>
-            <button id="button-null" class="button">NULL</button>
+            <a id="button-one" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/1">1</a>
+            <a id="button-two" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/2">2</a>
+            <a id="button-three" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/3">3</a>
+            <a id="button-four" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/4">4</a>
+            <a id="button-five" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/2">5</a>
+            <a id="button-null" class="button" href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">NULL</a>
         </div>
     </div>
     <div class="column-a">

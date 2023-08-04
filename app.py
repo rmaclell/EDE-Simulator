@@ -48,7 +48,7 @@ def customer_data(severity_lvl, num_attributes):
 @app.route("/segments/<severity_lvl>/")
 def customer_segments(severity_lvl):
     """API endpoint for the customer segments resource.
-    :param severity_lvl: a string defining the
+    :param severity_lvl: a string defining the severity level.
     :return: a JSON response object.
     """
     if severity_lvl in _SEVERITY_LVLS:
