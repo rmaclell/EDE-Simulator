@@ -1,0 +1,12 @@
+.hide-button{
+    border-color: #4b4a4a;
+    border-width: 0.1rem;
+    border-style: solid;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    text-decoration: underline;
+    font-style: italic;
+}

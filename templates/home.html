@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-This is  a test.
-</body>
-</html>
+{%- extends 'base.html' -%}
+{%- block page_title -%}Home&nbsp{%- endblock -%}
+{%- block page_style -%}
+<link href="{{ url_for('static',filename='css/home.css') }}" rel="stylesheet">
+{%- endblock -%}
+{%- block nav_info -%}
+<a href="{{ url_for('home') }}">Home</a>
+{%- endblock -%}
+{%- block column_a -%}
+<div id="top-row-a" class="content-box">
+    <h2>Request</h2>
+    <p>The details of the request will appear here after selection.</p>
+
+</div>
+<div id="bottom-row-a" class="content-box">
+    <h2>Filter</h2>
+    <p>The attributes filtered from the response will appear here.</p>
+    <button class="hide-button">Hide</button>
+
+</div>
+{%- endblock -%}
+
+{%- block column_b -%}
+<div id="top-row-b" class="content-box">
+    <h2>Response</h2>
+    <p>The response to a request will appear here after execution.</p>
+</div>
+<div id="bottom-row-b" class="content-box">
+    <h2>Attributes</h2>
+    <p>Unconsumed attributes can be seen here, if requested.</p>
+</div>
+{%- endblock -%}

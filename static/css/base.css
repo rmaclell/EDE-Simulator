@@ -1,0 +1,136 @@
+.html, body {
+    height: 100%;
+    font-family: 'Courier New', monospace;
+    padding: 2em;
+}
+
+h2 {
+    text-decoration: underline;
+}
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+
+/* container */
+.three-columns-grid {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 0.7fr 1fr 1fr;
+}
+/* sidebar nav */
+.sidebar-nav {
+    background: #e5e5e5;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: #4b4a4a;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+/* page logo */
+.page-logo {
+    font-style: italic;
+}
+
+#intro-text {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* content boxes */
+.content-box{
+    padding: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 2em;
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: #4b4a4a;
+    border-radius: 1rem;
+    height: 20rem;
+}
+
+/* button group main style */
+.button-group .button {
+    border-color: #4b4a4a;
+    border-width: 0.1rem;
+    border-style: solid;
+    padding: 0.7rem;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.button{
+    transition-duration: 0.4s;
+}
+
+/* individual button style */
+#button-low{
+    background-color: #85d289;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+#button-low:hover {
+    background-color: #57965a;
+    color: white;
+    font-weight: bold;
+}
+
+/* individual button style */
+#button-mod{
+    background-color: #f8c66e;
+}
+
+#button-mod:hover {
+    background-color: #d0993f;
+    color: white;
+    font-weight: bold;
+}
+/* individual button style */
+#button-high{
+    background-color: #f88b8b;
+
+}
+
+#button-high:hover {
+    background-color: #be6e6e;
+    color: white;
+    font-weight: bold;
+}
+
+#button-none {
+    background-color: #8b8bf3;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+#button-none:hover {
+    background-color: #7373c9;
+}
+
+.button-group .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+#button-one {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+#button-null{
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.button:hover{
+    font-weight: bold;
+    background-color: #7e7a7a;
+    color: white;
+}

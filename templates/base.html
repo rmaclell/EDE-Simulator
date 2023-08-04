@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+    <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet">
+    {%- block page_styles -%} {%- endblock -%}
+    <title>{%- block page_title -%} {%- endblock -%} | EDEeval</title>
+</head>
+<body>
+<div class="three-columns-grid">
+    <div class="sidebar-nav">
+        <span class="page-logo">
+            <h1>EDEeval</h1>
+        </span>
+        <p>You are here:&nbsp{%- block nav_info -%} {%- endblock -%}</p>
+        <p id="intro-text">To get started, generate a request by selecting a severity or exposure level.</p>
+        <h2>Severity</h2>
+        <p>Selecting a severity level will generate request for a random number of attributes at the severity level.</p>
+        <div class="button-group">
+
+            <button id="button-low" class="button">
+                <a href="http://127.0.0.1:5000/customers/low/{{ range(1,6) | random }}">Low</a>
+            </button>
+            <button id="button-mod" class="button">
+                <a href="http://127.0.0.1:5000/customers/mod/{{ range(1,6) | random }}">Moderate</a>
+            </button>
+            <button id="button-high" class="button">
+                <a href="http://127.0.0.1:5000/customers/high/{{ range(1,6) | random }}">High</a>
+            </button>
+            <button id="button-none" class="button">
+                <a href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">None</a>
+            </button>
+        </div>
+        <h2>Exposure Level</h2>
+        <p>Selecting an exposure level will generate a request with the specified number of attributes at a random severity level.</p>
+        <div class="button-group">
+            <button id="button-one" class="button">1</button>
+            <button id="button-two" class="button">2</button>
+            <button id="button-three" class="button">3</button>
+            <button id="button-four" class="button">4</button>
+            <button id="button-five" class="button">5</button>
+            <button id="button-null" class="button">NULL</button>
+        </div>
+    </div>
+    <div class="column-a">
+        {%- block column_a -%} {%- endblock -%}
+    </div>
+    <div class="column-b">
+        {%- block column_b -%} {%- endblock -%}
+    </div>
+</div>
+
+</body>
+</html>
