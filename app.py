@@ -7,7 +7,7 @@ from internal_services import generate_request_chain, construct_json_response, h
 app = Flask(__name__)
 
 _MIN_ATTRIBUTES = 1
-_MAX_ATTRIBUTES = 7
+_MAX_ATTRIBUTES = 5
 _SEVERITY_LVLS = ["low", "mod", "high"]
 
 
@@ -31,18 +31,26 @@ def customer_data(severity_lvl, num_attributes):
             attribute_list = get_attribute_list(severity_lvl)
             request_chain = generate_request_chain(severity_lvl, attribute_list, len(attribute_list))
             response_data = handle_request_chain(request_chain)
-            return jsonify(http.HTTPStatus.OK.value, response_data)
+            return render_template("home.html", request_url=request.url, request_method=request.method,
+                                   response_data=response_data, num_attributes=num_attributes, attribute_list=attribute_list,
+                                   status=http.HTTPStatus.OK.value)
         elif severity_lvl == "none":
             selected_entity = random.choice(_SEVERITY_LVLS)
             attribute_list = get_attribute_list(selected_entity)
             selected_attributes = random.sample(attribute_list, num_attributes)
             request_chain = generate_request_chain(selected_entity, selected_attributes, len(selected_attributes))
             response_data = handle_request_chain(request_chain)
-            return jsonify(http.HTTPStatus.OK.value, response_data)
+            return render_template("home.html", request_url=request.url, request_method=request.method,
+                                   response_data=response_data, num_attributes=num_attributes, attribute_list=attribute_list,
+                                   status=http.HTTPStatus.OK.value)
         else:
-            return jsonify(http.HTTPStatus.BAD_REQUEST.value, "The security level requested is not recognised.")
+            return render_template('home.html', status_value=http.HTTPStatus.BAD_REQUEST.value,
+                                   status_desc=http.HTTPStatus.BAD_REQUEST.description, request_url=request.url,
+                                   error="The severity level requested is not recognised.")
     else:
-        return jsonify(http.HTTPStatus.BAD_REQUEST.value, "The requested URL is malformed.")
+        return render_template('home.html', status_value=http.HTTPStatus.BAD_REQUEST.value,
+                               status_desc=http.HTTPStatus.BAD_REQUEST.description, request_url=request.url,
+                               error="The number of attributes requested is invalid.")
 
 
 @app.route("/segments/<severity_lvl>/")

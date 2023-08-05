@@ -33,25 +33,28 @@ def generate_request_chain(severity_lvl, attribute_list, no_attributes):
     :param no_attributes: the number of attributes passed.
     :return: a string array containing the URIs for the request chain.
     """
-    # Instantiate the maximum attributes and the request chain array.
+    # Instantiate the maximum attributes, request chain list and base string for the URLs.
     max_attributes = no_attributes
     request_chain = []
     base_string = base_url + segments_uri + "/" + severity_lvl + "/?"
+
+    # Create a copy of the attribute list to preserve the original.
+    attributes_to_assign = attribute_list.copy()
 
     while max_attributes > 0:
         # Check the maximum attributes left is not one to prevent a value error in the random range function.
         if max_attributes != 1:
             no_req_attributes = random.randrange(1, max_attributes)
-            req_attributes = random.sample(attribute_list, no_req_attributes)
+            req_attributes = random.sample(attributes_to_assign, no_req_attributes)
             new_request = base_string
             for attr_string in req_attributes:
                 new_request = new_request + "attr=" + attr_string + "&"
-                attribute_list.remove(attr_string)
+                attributes_to_assign.remove(attr_string)
             new_request = new_request.rstrip(new_request[-1])
             max_attributes = max_attributes - no_req_attributes
             request_chain.append(new_request)
         else:
-            new_request = base_string + "attr=" + attribute_list[0]
+            new_request = base_string + "attr=" + attributes_to_assign[0]
             request_chain.append(new_request)
             break
     return request_chain

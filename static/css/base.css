@@ -11,6 +11,11 @@ a {
     text-decoration: inherit;
     color: inherit;
 }
+.link-in-text {
+    text-decoration: underline;
+    color: #5f5ffd;
+    font-weight: bold;
+}
 
 
 /* container */
@@ -50,6 +55,12 @@ a {
     border-radius: 1rem;
     height: 20rem;
 }
+
+#error-box {
+    border-color: #e74646;
+    height: auto;
+}
+
 
 /* button group main style */
 .button-group .button {
