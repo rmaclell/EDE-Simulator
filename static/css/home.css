@@ -1,12 +1,27 @@
-.hide-button{
-    border-color: #4b4a4a;
+.hide-button {
+    padding: 0.7rem;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom:0;
+    border-bottom-left-radius: 0.9rem;
+    border-bottom-right-radius: 0.9rem;
+}
+
+/* content boxes */
+.content-box{
+    padding: 2rem;
+    position: relative;
+    margin-bottom: 2rem;
+    margin-left: 2em;
     border-width: 0.1rem;
     border-style: solid;
-    padding: 1rem;
-    text-align: center;
-    cursor: pointer;
-    font-family: 'Courier New', monospace;
-    font-size: 1em;
-    text-decoration: underline;
-    font-style: italic;
+    border-color: #4b4a4a;
+    border-radius: 1rem;
+    height: 20rem;
+}
+
+#error-box {
+    border-color: #e74646;
+    height: auto;
 }

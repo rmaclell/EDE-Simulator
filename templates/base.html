@@ -30,8 +30,19 @@
             <a id="button-two" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/2">2</a>
             <a id="button-three" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/3">3</a>
             <a id="button-four" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/4">4</a>
-            <a id="button-five" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/2">5</a>
+            <a id="button-five" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/5">5</a>
             <a id="button-null" class="button" href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">NULL</a>
+        </div>
+        <h2>Hide Content</h2>
+        <p>Customise the page by hiding content boxes.</p>
+        <div class="button-group">
+            {% if session['HIDE_BUTTON'] == 'False' %}
+            <a id="button-hide-enable" class="button" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
+            <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
+            {% else %}
+            <a id="button-hide-enable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
+            <a id="button-hide-disable" class="button" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
+            {% endif %}
         </div>
     </div>
     <div class="column-a">

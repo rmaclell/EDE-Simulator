@@ -1,7 +1,7 @@
 {%- extends 'base.html' -%}
 {%- block page_title -%}Home&nbsp{%- endblock -%}
-{%- block page_style -%}
-<link href="{{ url_for('static',filename='css/home.css') }}" rel="stylesheet" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{%- block page_styles -%}
+<link href="{{ url_for('static',filename='css/home.css') }}" rel="stylesheet">
 {%- endblock -%}
 {%- block nav_info -%}
 <a class="link-in-text" href="{{ url_for('home') }}">Home</a>
@@ -18,6 +18,9 @@
         <p><strong>Method:</strong> {{ request_method }}<p>
         <p><strong>Accept:</strong> application/json<p>
         {% endif %}
+    {% if session['HIDE_BUTTON'] == 'True'%}
+    <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Request') }}">Hide the <strong>Request</strong> content box</a>
+    {% endif %}
 </div>
     {% else %}
 <div id="error-box" class="content-box">
@@ -32,18 +35,29 @@
 <div id="bottom-row-a" class="content-box">
     <h2>Filter</h2>
     {% if num_attributes is defined %}
-    <p>{{ num_attributes }} attributes were consumed from the response:</p>
+        {% if num_attributes > 1 %}
+        <p>{{ num_attributes }} attributes were consumed from the response:</p>
+        {% else %}
+        <p>{{ num_attributes }} attribute was consumed from the response:</p>
+        {% endif %}
     {% if response_data is defined %}
     <ul>
-        {% for i in range(num_attributes) %}
-             <li>{{ attribute_list[i] }}: {{ response_data.get(attribute_list[i]) }} </li>
-        {% set dummy_var = attribute_list.pop(i) %}
-        {% endfor %}
+        {% if consumed_attributes is defined %}
+            {% for attribute in consumed_attributes %}
+            <li>{{ attribute }}: {{ response_data[attribute] }}</li>
+            {% endfor %}
+        {% else %}
+            {% for attribute in attribute_list %}
+            <li>{{ attribute }}: {{ response_data[attribute] }}</li>
+            {% endfor %}
+        {% endif %}
     </ul>
-    {{ attribute_list }}
     {% endif %}
     {% else %}
     <p>The consumed attributes from the response will appear here.</p>
+    {% endif %}
+    {% if session['HIDE_BUTTON'] == 'True'%}
+    <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Filter') }}">Hide the <strong>Filter</strong> content box</a>
     {% endif %}
 </div>
 {% endif %}
@@ -57,10 +71,29 @@
         [{{ status }},
         {{ response_data }}]
     {% endif %}
+    {% if session['HIDE_BUTTON'] == 'True'%}
+    <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Response') }}">Hide the <strong>Response</strong> content box</a>
+    {% endif %}
 </div>
 <div id="bottom-row-b" class="content-box">
     <h2>Attributes</h2>
-    <p>Unconsumed attributes can be seen here, if requested.</p>
+    {% if unconsumed_attributes is not defined %}
+        {% if attribute_list|length == num_attributes %}
+        <p>All attributes from the response were consumed. </p>
+        {% else %}
+        <p>Unconsumed attributes can be seen here, if requested.</p>
+        {% endif %}
+    {% else %}
+    <p>{{ unconsumed_attributes|length }} attributes are unconsumed from the response:</p>
+    <ul>
+        {% for attribute in unconsumed_attributes %}
+        <li>{{ attribute }}: {{ response_data[attribute] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if session['HIDE_BUTTON'] == 'True'%}
+    <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Attributes') }}">Hide the <strong>Attributes</strong> content box</a>
+    {% endif %}
 </div>
 {% endif %}
 {%- endblock -%}

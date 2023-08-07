@@ -1,7 +1,6 @@
 import json
 import random
 import sqlite3
-
 import requests
 
 # URL/URIs for the API endpoints.
@@ -116,4 +115,23 @@ def construct_json_response(cursor):
                      for i, value in enumerate(row)) for row in cursor.fetchall()]
     return json.dumps(response[0])
 
+
+def filter_attributes(num_attributes, attribute_list):
+    """Filters the attribute list to enable display on the client-side.
+    :param num_attributes: the number of attributes required.
+    :param attribute_list: the list of attributes available.
+    :return: a list containing the consumed attributes and a list containing the unconsumed attributes.
+    """
+
+    # Create a copy of the attribute list to preserve the original.
+    attributes_to_filter = attribute_list.copy()
+    unconsumed_attributes = attribute_list.copy()
+    consumed_attributes = []
+
+    for index in range(1, num_attributes + 1):
+        selected_attribute = random.choice(attributes_to_filter)
+        consumed_attributes.append(selected_attribute)
+        attributes_to_filter.remove(selected_attribute)
+        unconsumed_attributes.remove(selected_attribute)
+    return consumed_attributes, unconsumed_attributes
 
