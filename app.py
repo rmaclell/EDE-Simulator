@@ -81,25 +81,42 @@ def customer_segments(severity_lvl):
 
 @app.route("/session/")
 def manage_session():
+    """Manages the Flask session object and controls page customisation features.
+    :return: an HTML template.
+    """
+    # Enable or disable hide buttons on the template
     if request.args.get("hide_button"):
         if request.args.get("hide_button") == "True" or "False":
             session['HIDE_BUTTON'] = request.args.get("hide_button")
-            print(session)
             return render_template("home.html")
         else:
             return render_template("home.html")
+    # Hide a specific element on the page.
     elif request.args.get("hide_element"):
         if request.args.get("hide_element") in _HIDE_ELEMENTS:
-            hidden_elements = session.get("HIDDEN_ELEMENTS")
-            hidden_elements.append(request.args.get("hide_element"))
-            session["HIDDEN_ELEMENTS"] = hidden_elements
-            print(session)
+            if session.get("HIDDEN_ELEMENTS"):
+                hidden_elements = session.get("HIDDEN_ELEMENTS")
+                hidden_elements.append(request.args.get("hide_element"))
+                session["HIDDEN_ELEMENTS"] = hidden_elements
+                return render_template("home.html")
+            else:
+                hidden_elements = [request.args.get("hide_element")]
+                session["HIDDEN_ELEMENTS"] = hidden_elements
+                return render_template("home.html")
+    # Un-hide a specific element on the page.
     elif request.args.get("unhide_element"):
         if request.args.get("unhide_element") in _HIDE_ELEMENTS:
-            hidden_elements = session.get("HIDDEN_ELEMENTS")
-            hidden_elements.remove(request.args.get("unhide_element"))
-            session["HIDDEN_ELEMENTS"] = hidden_elements
-            print(session)
+            if session.get("HIDDEN_ELEMENTS"):
+                hidden_elements = session.get("HIDDEN_ELEMENTS")
+                if request.args.get("unhide_element") in hidden_elements:
+                    hidden_elements.remove(request.args.get("unhide_element"))
+                    session["HIDDEN_ELEMENTS"] = hidden_elements
+                    return render_template("home.html")
+                else:
+                    return render_template("home.html")
+            else:
+                return render_template("home.html")
+    # Clear the current session object.
     elif request.args.get("clear"):
         if request.args.get("clear") == "True":
             session.clear()

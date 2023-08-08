@@ -17,6 +17,9 @@ a {
     font-weight: bold;
 }
 
+.hidden-text {
+    color: #c4c0c0;
+}
 
 /* container */
 .three-columns-grid {

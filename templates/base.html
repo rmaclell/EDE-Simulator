@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
     <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet">
     {%- block page_styles -%} {%- endblock -%}
-    <title>{%- block page_title -%} {%- endblock -%} | EDEeval</title>
+    <title>EDEeval</title>
 </head>
 <body>
 <div class="three-columns-grid">
@@ -13,7 +13,6 @@
         <span class="page-logo">
             <h1>EDEeval</h1>
         </span>
-        <p>You are here:&nbsp{%- block nav_info -%} {%- endblock -%}</p>
         <p id="intro-text">To get started, generate a request by selecting a severity or exposure level.</p>
         <h2>Severity</h2>
         <p>Selecting a severity level will generate request for a random number of attributes at the severity level.</p>
@@ -34,9 +33,12 @@
             <a id="button-null" class="button" href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">NULL</a>
         </div>
         <h2>Hide Content</h2>
-        <p>Customise the page by hiding content boxes.</p>
+        <p>Customise the page by hiding content.</p>
         <div class="button-group">
             {% if session['HIDE_BUTTON'] == 'False' %}
+            <a id="button-hide-enable" class="button" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
+            <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
+            {% elif session['HIDE_BUTTON'] is not defined %}
             <a id="button-hide-enable" class="button" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
             <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
             {% else %}
@@ -44,6 +46,10 @@
             <a id="button-hide-disable" class="button" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
             {% endif %}
         </div>
+        {% if session['HIDE_BUTTON'] is defined %}
+        <p>You have an <strong>active</strong> session.</p>
+        <p><strong>Actions: </strong><a class="link-in-text" href="{{ url_for('manage_session', clear='True') }}">Clear session</a> </p>
+        {% endif %}
     </div>
     <div class="column-a">
         {%- block column_a -%} {%- endblock -%}
