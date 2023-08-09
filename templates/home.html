@@ -11,7 +11,7 @@
         {% if session['HIDE_BUTTON'] == 'True'%}
         <a class="button hide-button" href="{{ url_for('manage_session', unhide_element='Request') }}">Show <strong>Request</strong> content</a>
         {% else %}
-        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Request') }}">Hide buttons are disabled</a>
+        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Request') }}">Page customisation is disabled</a>
         {% endif %}
     {% else %}
         <h2>Request</h2>
@@ -45,7 +45,7 @@
         {% if session['HIDE_BUTTON'] == 'True'%}
         <a class="button hide-button" href="{{ url_for('manage_session', unhide_element='Filter') }}">Show <strong>Filter</strong> content</a>
         {% else %}
-        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Filter') }}">Hide buttons are disabled</a>
+        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Filter') }}">Page customisation is disabled</a>
         {% endif %}
     {% else %}
         <h2>Filter</h2>
@@ -59,11 +59,11 @@
         <ul>
             {% if consumed_attributes is defined %}
                 {% for attribute in consumed_attributes %}
-                <li>{{ attribute }}: {{ response_data[attribute] }}</li>
+                <li><strong>{{ attribute }}:</strong> {{ response_data[attribute] }}</li>
                 {% endfor %}
             {% else %}
                 {% for attribute in attribute_list %}
-                <li>{{ attribute }}: {{ response_data[attribute] }}</li>
+                <li><strong>{{ attribute }}:</strong> {{ response_data[attribute] }}</li>
                 {% endfor %}
             {% endif %}
         </ul>
@@ -72,7 +72,7 @@
         <p>The consumed attributes from the response will appear here.</p>
         {% endif %}
         {% if session['HIDE_BUTTON'] == 'True'%}
-        <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Filter') }}">Hide the <strong>Filter</strong> content box</a>
+        <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Filter') }}">Hide <strong>Filter</strong> content</a>
         {% endif %}
     {% endif %}
 </div>
@@ -87,7 +87,7 @@
         {% if session['HIDE_BUTTON'] == 'True'%}
         <a class="button hide-button" href="{{ url_for('manage_session', unhide_element='Response') }}">Show <strong>Response</strong> content</a>
         {% else %}
-        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Response') }}">Hide buttons are disabled</a>
+        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Response') }}">Page customisation is disabled</a>
         {% endif %}
     {% else %}
         <h2>Response</h2>
@@ -97,7 +97,7 @@
             {{ response_data }}]
         {% endif %}
         {% if session['HIDE_BUTTON'] == 'True'%}
-        <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Response') }}">Hide the <strong>Response</strong> content box</a>
+        <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Response') }}">Hide <strong>Response</strong> content</a>
         {% endif %}
     {% endif %}
 </div>
@@ -108,7 +108,7 @@
         {% if session['HIDE_BUTTON'] == 'True'%}
         <a class="button hide-button" href="{{ url_for('manage_session', unhide_element='Attributes') }}">Show <strong>Attributes</strong> content</a>
         {% else %}
-        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Attributes') }}">Hide buttons are disabled</a>
+        <a class="button hide-button option-disabled" href="{{ url_for('manage_session', unhide_element='Attributes') }}">Page customisation is disabled</a>
         {% endif %}
     {% else %}
         <h2>Attributes</h2>
@@ -122,12 +122,12 @@
         <p>{{ unconsumed_attributes|length }} attributes are unconsumed from the response:</p>
         <ul>
             {% for attribute in unconsumed_attributes %}
-            <li>{{ attribute }}: {{ response_data[attribute] }}</li>
+            <li><strong>{{ attribute }}:</strong> {{ response_data[attribute] }}</li>
             {% endfor %}
         </ul>
         {% endif %}
         {% if session['HIDE_BUTTON'] == 'True'%}
-        <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Attributes') }}">Hide the <strong>Attributes</strong> content box</a>
+        <a class="button hide-button" href="{{ url_for('manage_session', hide_element='Attributes') }}">Hide <strong>Attributes</strong> content</a>
         {% endif %}
     {% endif %}
 </div>

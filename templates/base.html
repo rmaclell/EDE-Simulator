@@ -11,7 +11,7 @@
 <div class="three-columns-grid">
     <div class="sidebar-nav">
         <span class="page-logo">
-            <h1>EDEeval</h1>
+            <h1>EDE Simulator</h1>
         </span>
         <p id="intro-text">To get started, generate a request by selecting a severity or exposure level.</p>
         <h2>Severity</h2>
@@ -32,18 +32,18 @@
             <a id="button-five" class="button" href="http://127.0.0.1:5000/customers/{{ ['low','mod','high'] | random }}/5">5</a>
             <a id="button-null" class="button" href="http://127.0.0.1:5000/customers/none/{{ range(1,6) | random }}">NULL</a>
         </div>
-        <h2>Hide Content</h2>
+        <h2>Customisation</h2>
         <p>Customise the page by hiding content.</p>
         <div class="button-group">
             {% if session['HIDE_BUTTON'] == 'False' %}
-            <a id="button-hide-enable" class="button" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
-            <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
+            <a id="button-hide-enable" class="button" href="{{ url_for('manage_session',hide_button='True') }}">Enable page customisation</a>
+            <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable page customisation</a>
             {% elif session['HIDE_BUTTON'] is not defined %}
             <a id="button-hide-enable" class="button" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
-            <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
+            <a id="button-hide-disable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='False') }}">Disable page customisation</a>
             {% else %}
-            <a id="button-hide-enable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='True') }}">Enable hide buttons</a>
-            <a id="button-hide-disable" class="button" href="{{ url_for('manage_session',hide_button='False') }}">Disable hide buttons</a>
+            <a id="button-hide-enable" class="button option-disabled" href="{{ url_for('manage_session',hide_button='True') }}">Enable page customisation</a>
+            <a id="button-hide-disable" class="button" href="{{ url_for('manage_session',hide_button='False') }}">Disable page customisation</a>
             {% endif %}
         </div>
         {% if session['HIDE_BUTTON'] is defined %}
